@@ -9,6 +9,8 @@ namespace BitBookWebApplication.Models
 {
     public class BBWAContext:DbContext
     {
-        public DbSet<Person> Persons { set; get; }
+        public DbSet<User> Users { set; get; }
+        public DbSet<Gender> Genders { set; get; }
+        public DbSet<AdditionInformationOfUser> AdditionInformationOfUsers { set; get; } 
     }
 }

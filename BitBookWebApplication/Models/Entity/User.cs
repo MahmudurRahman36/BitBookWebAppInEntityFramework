@@ -8,7 +8,7 @@ using System.Web;
 
 namespace BitBookWebApplication.Models.Entity
 {
-    public class Person
+    public class User
     {
         public int Id { get; set; }
 
@@ -39,10 +39,12 @@ namespace BitBookWebApplication.Models.Entity
         [Display(Name = "Date Of Birth")]
         [Column(TypeName = "Date")]                  //datetime type=date
         [DisplayName("Start Date")]
+        [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
+        
         public DateTime DateOfBirth { get; set; }   //To use dateTime there must be textboxFor no texteditor for in the view
-
-        [Required]
-        public string Gender { get; set; }
+        public int GenderId { get; set; }
+        public Gender Gender { get; set; }
+        public AdditionInformationOfUser AdditionInformationOfUser { get; set; }
     }
 }

@@ -1,7 +1,9 @@
-﻿@model BitBookWebApplication.Models.Entity.Person
+﻿@using BitBookWebApplication.Models.Entity
+@model BitBookWebApplication.Models.Entity.User
 
 @{
     Layout = null;
+    List<Gender> genderList = ViewBag.GenderList;
 }
 
 <!DOCTYPE html>
@@ -17,15 +19,18 @@
     <link href="~/Content/Pikaday/pikaday.css" rel="stylesheet" />
 </head>
 <body>
-    @using (Html.BeginForm()) 
+    @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
-        
+
         <div class="form-horizontal">
             <h1>Create a New Account</h1>
             <hr />
             @Html.ValidationSummary(true)
-    
+            @if (ViewBag.Message != null)
+            {
+                <h3 style="color: red">@ViewBag.Message</h3>
+            }
             <div class="form-group">
                 @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -33,7 +38,7 @@
                     @Html.ValidationMessageFor(model => model.Name)
                 </div>
             </div>
-    
+
             <div class="form-group">
                 @Html.LabelFor(model => model.Email, new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -49,7 +54,7 @@
                     @Html.ValidationMessageFor(model => model.ConfirmEmail)
                 </div>
             </div>
-    
+
             <div class="form-group">
                 @Html.LabelFor(model => model.MobileNo, new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -57,7 +62,7 @@
                     @Html.ValidationMessageFor(model => model.MobileNo)
                 </div>
             </div>
-    
+
             <div class="form-group">
                 @Html.LabelFor(model => model.Password, new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -65,7 +70,7 @@
                     @Html.ValidationMessageFor(model => model.Password)
                 </div>
             </div>
-            
+
             <div class="form-group">
                 @Html.LabelFor(model => model.ConfirmPassword, new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -73,23 +78,30 @@
                     @Html.ValidationMessageFor(model => model.ConfirmPassword)
                 </div>
             </div>
-    
+
             <div class="form-group">
                 @Html.LabelFor(model => model.DateOfBirth, new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.TextBoxFor(model => model.DateOfBirth, new { id = "pickyDate"})
+                    @Html.TextBoxFor(model => model.DateOfBirth, new { id = "pickyDate" })
                     @Html.ValidationMessageFor(model => model.DateOfBirth)
                 </div>
             </div>
-    
+
             <div class="form-group">
                 @Html.LabelFor(model => model.Gender, new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Gender)
-                    @Html.ValidationMessageFor(model => model.Gender)
+                <div class="col-md-10">                                      
+                        @foreach (Gender gender in genderList)
+                        {
+                            <div>
+                                @Html.RadioButtonFor(model => model.GenderId, gender.Id)
+                                @Html.Label(gender.Name)
+                            </div>
+                            
+                        }
+                        @Html.ValidationMessageFor(model => model.GenderId)<br />                   
                 </div>
             </div>
-    
+
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
                     <input type="submit" value="Create" class="btn btn-default" />
@@ -102,16 +114,9 @@
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
     <script src="~/Scripts/bootstrap.js"></script>
-    <script src="~/Scripts/bootstrap-datepicker.js"></script>
-    <script src="~/Scripts/Pikaday/pikaday.js"></script>
-    <script src="~/Scripts/moment.js"></script>
+    <script src="~/Scripts/bootstrap-datepicker.js"></script>   
 
-    <script>   
-        //$(document).ready(function () {
-        //    $('#pickyDate').datepicker({
-        //        format: "yyyy-mm-dd"
-        //    });
-        //});
+    <script>        
         $(document).ready(function () {
             var date_input = $('input[name="DateOfBirth"]'); //our date input has the name "date"
             var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
@@ -122,40 +127,50 @@
                 autoclose: true,
             });
         })
-        //$(document).ready(function () {
-        //    var date_input = $('input[name="DateOfBirth"]'); //our date input has the name "date"
-        //    var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
-        //    var options = {
-        //        format: 'mm/dd/yyyy',
-        //        container: container,
-        //        todayHighlight: true,
-        //        autoclose: true,
-        //    };
-        //    date_input.datepicker(options);
-        //})
-        //$(function () {
-        //    $('input[name="DateOfBirth"]').datetimepicker({
-        //        locale: 'ru'
-        //    });
-        //});
-        //$(document).ready(function () {
-        //    $(document).ready(function () {
-        //        $('#pickyDate').datepicker({
-        //            format: "mm-dd-yyyy"
-        //        });
-        //    });
-        //    //jQuery(document).ready(function ($) {
-        //    //    var $datepicker = $('#pickyDate').pikaday({
-        //    //        firstDay: 1,
-        //    //        minDate: new Date('2000-01-01'),
-        //    //        maxDate: new Date('2020-12-31'),
-        //    //        yearRange: [2000, 2020]
-        //    //    });
-
-        //    //    $datepicker.pikaday('show');
-        //    //});
-
-        //});
     </script>
+    
+    @*<script src="~/Scripts/Pikaday/pikaday.js"></script>
+    <script src="~/Scripts/moment.js"></script>
+    <script>  
+        $(document).ready(function () {
+            $('#pickyDate').datepicker({
+                format: "yyyy-mm-dd"
+            });
+        });
+        $(document).ready(function () {
+            var date_input = $('input[name="DateOfBirth"]'); //our date input has the name "date"
+            var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
+            var options = {
+                format: 'mm/dd/yyyy',
+                container: container,
+                todayHighlight: true,
+                autoclose: true,
+            };
+            date_input.datepicker(options);
+        })
+        $(function () {
+            $('input[name="DateOfBirth"]').datetimepicker({
+                locale: 'ru'
+            });
+        });
+        $(document).ready(function () {
+            $(document).ready(function () {
+                $('#pickyDate').datepicker({
+                    format: "mm-dd-yyyy"
+                });
+            });
+            jQuery(document).ready(function ($) {
+                var $datepicker = $('#pickyDate').pikaday({
+                    firstDay: 1,
+                    minDate: new Date('2000-01-01'),
+                    maxDate: new Date('2020-12-31'),
+                    yearRange: [2000, 2020]
+                });
+
+                $datepicker.pikaday('show');
+            });
+
+        });
+        </script>*@
 </body>
 </html>

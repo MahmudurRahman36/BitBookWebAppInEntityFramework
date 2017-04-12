@@ -1,3 +1,5 @@
+using BitBookWebApplication.Models.Entity;
+
 namespace BitBookWebApplication.Migrations
 {
     using System;
@@ -26,6 +28,11 @@ namespace BitBookWebApplication.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+            //context.Genders.AddOrUpdate(
+            //    p=>p.Name,
+            //    new Gender { Name = "Male"},
+            //    new Gender { Name = "Female" }
+            //    );
         }
     }
 }

@@ -160,19 +160,33 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="BLL\PersonManager.cs" />
+    <Compile Include="BLL\UserManager.cs" />
     <Compile Include="Controllers\SignUpController.cs" />
-    <Compile Include="DAL\PersonGateway.cs" />
+    <Compile Include="DAL\UserGateway.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201704110603215_FirstMigrationOfThisProjectWithPersonModel.cs" />
-    <Compile Include="Migrations\201704110603215_FirstMigrationOfThisProjectWithPersonModel.Designer.cs">
-      <DependentUpon>201704110603215_FirstMigrationOfThisProjectWithPersonModel.cs</DependentUpon>
+    <Compile Include="Migrations\201704120924142_InitialStateWithUserAndGenderTable.cs" />
+    <Compile Include="Migrations\201704120924142_InitialStateWithUserAndGenderTable.Designer.cs">
+      <DependentUpon>201704120924142_InitialStateWithUserAndGenderTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704120929190_AddGenderIdInUser.cs" />
+    <Compile Include="Migrations\201704120929190_AddGenderIdInUser.Designer.cs">
+      <DependentUpon>201704120929190_AddGenderIdInUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704121027230_AddedAdditionalInformationOfUserTable.cs" />
+    <Compile Include="Migrations\201704121027230_AddedAdditionalInformationOfUserTable.Designer.cs">
+      <DependentUpon>201704121027230_AddedAdditionalInformationOfUserTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704121029366_ChangedAdditionInformationOfUserTableIntoId.cs" />
+    <Compile Include="Migrations\201704121029366_ChangedAdditionInformationOfUserTableIntoId.Designer.cs">
+      <DependentUpon>201704121029366_ChangedAdditionInformationOfUserTableIntoId.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BBWAContext.cs" />
-    <Compile Include="Models\Entity\Person.cs" />
+    <Compile Include="Models\Entity\AdditionInformationOfUser.cs" />
+    <Compile Include="Models\Entity\Gender.cs" />
+    <Compile Include="Models\Entity\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -326,8 +340,17 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201704110603215_FirstMigrationOfThisProjectWithPersonModel.resx">
-      <DependentUpon>201704110603215_FirstMigrationOfThisProjectWithPersonModel.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201704120924142_InitialStateWithUserAndGenderTable.resx">
+      <DependentUpon>201704120924142_InitialStateWithUserAndGenderTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704120929190_AddGenderIdInUser.resx">
+      <DependentUpon>201704120929190_AddGenderIdInUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704121027230_AddedAdditionalInformationOfUserTable.resx">
+      <DependentUpon>201704121027230_AddedAdditionalInformationOfUserTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704121029366_ChangedAdditionInformationOfUserTableIntoId.resx">
+      <DependentUpon>201704121029366_ChangedAdditionInformationOfUserTableIntoId.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

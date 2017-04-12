@@ -7,13 +7,13 @@ namespace BitBookWebApplication.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class FirstMigrationOfThisProjectWithPersonModel : IMigrationMetadata
+    public sealed partial class AddedAdditionalInformationOfUserTable : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(FirstMigrationOfThisProjectWithPersonModel));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddedAdditionalInformationOfUserTable));
         
         string IMigrationMetadata.Id
         {
-            get { return "201704110603215_FirstMigrationOfThisProjectWithPersonModel"; }
+            get { return "201704121027230_AddedAdditionalInformationOfUserTable"; }
         }
         
         string IMigrationMetadata.Source

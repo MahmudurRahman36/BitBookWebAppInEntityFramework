@@ -10,23 +10,41 @@ namespace BitBookWebApplication.Controllers
 {
     public class SignUpController : Controller
     {
-        PersonManager _personManager=new PersonManager();
+        UserManager _userManager=new UserManager();
         public ActionResult SignUpPage()
         {
+            List<Gender> genderList = _userManager.GetAllGenders();
+            ViewBag.GenderList = genderList;
             return View();
         }
         [HttpPost]
-        public ActionResult SignUpPage(Person person)
+        public ActionResult SignUpPage(User user)
         {
-            if (_personManager.AddPerson(person)==0)
+            List<Gender> genderList = _userManager.GetAllGenders();
+            ViewBag.GenderList = genderList;
+            if (!ModelState.IsValid)
             {
-                return View(person);
+                return View(user);
+            }
+            if (_userManager.IsUserEmailExist(user))
+            {
+                ViewBag.Message = "User Email Already related to an Account";
+                return View(user);
+            }
+            if (_userManager.AddUser(user)==0)
+            {
+                ViewBag.Message = "Failed to add user data";
+                return View(user);
             }
             else
             {
                 return View();
-            }
-            
+            }            
+        }
+
+        public ActionResult AdditionInformationPage()
+        {
+            return View();
         }
 	}
 }
