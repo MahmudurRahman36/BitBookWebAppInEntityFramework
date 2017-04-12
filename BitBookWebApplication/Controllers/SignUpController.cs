@@ -46,5 +46,15 @@ namespace BitBookWebApplication.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public ActionResult AdditionInformationPage(AdditionInformationOfUser additionInformationOfUser)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(additionInformationOfUser);
+            }
+            var result = _userManager.AddAdditionalInformation(additionInformationOfUser);
+            return View(additionInformationOfUser);
+        }
 	}
 }

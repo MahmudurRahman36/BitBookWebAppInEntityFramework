@@ -38,7 +38,6 @@ namespace BitBookWebApplication.Models.Entity
 
         [Display(Name = "Date Of Birth")]
         [Column(TypeName = "Date")]                  //datetime type=date
-        [DisplayName("Start Date")]
         [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         

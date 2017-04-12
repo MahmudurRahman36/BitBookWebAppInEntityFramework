@@ -11,6 +11,8 @@ namespace BitBookWebApplication.Models
     {
         public DbSet<User> Users { set; get; }
         public DbSet<Gender> Genders { set; get; }
-        public DbSet<AdditionInformationOfUser> AdditionInformationOfUsers { set; get; } 
+        public DbSet<AdditionInformationOfUser> AdditionInformationOfUsers { set; get; }
+        public DbSet<ProfilePhoto> ProfilePhotos { get; set; }
+        public DbSet<CoverPhoto> CoverPhotos { get; set; } 
     }
 }

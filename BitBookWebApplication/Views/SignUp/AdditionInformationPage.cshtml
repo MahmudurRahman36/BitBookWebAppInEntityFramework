@@ -1,0 +1,75 @@
+﻿@model BitBookWebApplication.Models.Entity.AdditionInformationOfUser
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AdditionInformationPage</title>
+    <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+    @using (Html.BeginForm("AdditionInformationPage", "SignUp", FormMethod.Post, new { enctype = "multipart/form-data" })) 
+    {
+        @Html.AntiForgeryToken()
+        
+        <div class="form-horizontal">
+            <h4>AdditionInformationOfUser</h4>
+            <hr />
+            @Html.ValidationSummary(true)
+            @if (ViewBag.Message != null)
+            {
+                <h3 class='alert alert-danger'>@ViewBag.Message</h3>
+            }    
+            <div class="form-group">
+                @Html.LabelFor(model => model.ProfilePhoto, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.ProfilePhoto, new { type = "file" })
+                    @Html.ValidationMessageFor(model => model.ProfilePhoto)
+                </div>
+            </div>
+    
+            <div class="form-group">
+                @Html.LabelFor(model => model.CoverPhoto, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.CoverPhoto, new { type = "file" })
+                    @Html.ValidationMessageFor(model => model.CoverPhoto)
+                </div>
+            </div>
+    
+            <div class="form-group">
+                @Html.LabelFor(model => model.AboutMe, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.AboutMe)
+                    @Html.ValidationMessageFor(model => model.AboutMe)
+                </div>
+            </div>
+    
+            <div class="form-group">
+                @Html.LabelFor(model => model.Religion, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Religion)
+                    @Html.ValidationMessageFor(model => model.Religion)
+                </div>
+            </div>
+    
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+    <script src="~/Scripts/jquery-3.1.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <div>
+        @Html.ActionLink("Back to Sign up Page", "SignUpPage")
+    </div>
+</body>
+</html>
